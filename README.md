@@ -6,11 +6,14 @@
 
 ## Jupyter notebooks
 
-  - 01-IO.ipynb
-  - 02-lists.ipynb
+  - `01-IO.ipynb`
+  - `02-lists.ipynb`: class demo file
+  - `play-with-lists.ipynb`: examples of list methods
 
 
 ## Data files
 
   - blood_on_the_tracks.txt
   - dna.txt
+  - covid.gff3
+  - covid.fasta
