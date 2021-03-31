@@ -16,23 +16,47 @@ parser.add_argument("fasta", help='name of the FASTA file')
 # parse the arguments
 args = parser.parse_args()
 
-# GFF filename
-gff_input = 'watermelon.gff'
+# read in FASTA file
+genome = SeqIO.read(args.fasta, 'fasta')
+print(genome.id)
+print(genome.seq)
 
-# fasta filename
-fasta_input = 'watermelon.fsa'
 
 # open and read in GFF file
-with open(gff_input, 'r') as gff_in:
+with open(args.gff, 'r') as gff_in:
+
 	# create a csv reader object
 	reader = csv.reader(gff_in, delimiter='\t')
 
 	# loop over all the lines in our reader object (i.e., parsed file)
 	for line in reader:
-		# print(line)
-		print(line[3], line[4])
+		start  = line[3]
+		end    = line[4]
+		strand = line[6]
+
+		# extract the sequence
+		print(len(genome.seq))
 
 
-# read in FASTA file
 
-# parse the GFF file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
