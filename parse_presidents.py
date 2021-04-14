@@ -10,6 +10,10 @@ presidents = defaultdict(dict)
 # dictionary: key = party name, value = number of presidents in that party
 party = defaultdict(dict)
 
+# dictionary: key = president number, value = the entire data line in a list
+all_of_it = defaultdict(dict)
+
+
 # open and parse the data file
 with open('presidents.csv', 'r') as infile:
 	# create a csv reader object
@@ -24,13 +28,41 @@ with open('presidents.csv', 'r') as infile:
 
 		# else it's a data line -- parse this
 		else:
-			presidents[line[0]] = line[1]
-			party[line[5]] = line[1]
+			# make some variables for the columns, stripping as we go to remove whitespace
+			pres_num   = line[0].strip()
+			pres_name  = line[1].strip()
+			party_name = line[5].strip()
+
+			all_of_it[pres_num] = line
+
+			# buid presidents dictionary
+			presidents[pres_num] = pres_name
+
+			# build party dictionary
+			# test whether this key (party) exists in our dictionary
+			# if it exists, increment the count (value) by 1
+			if(party[party_name]):
+				party[party_name] += 1
+			# else this is the first time we've seen this party,
+			# so set the value equal to 1
+			else:
+				party[party_name] = 1
+
+
+print(all_of_it['16'][2])
+
+# loop over the party dictionary
+for i, j in all_of_it.items():
+	print(i, j[0], j[1], j[2])
+
+# loop over the party dictionary
+#for i, j in party.items():
+#	print(i, j)
 
 
 # looping over the party dictionary
-for i in party.keys():
-	print(i, party[i])
+# for i in party.keys():
+#	print('[' + i + ']' + ' ' + '[' + party[i] + ']')
 
 
 # print('President #16 was', presidents.get('16'))
