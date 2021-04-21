@@ -49,7 +49,7 @@ with open(args.gff, 'r') as gff_in:
 
 			if(feature == args.feature_type):
 				pat = re.compile(args.gene_name)
-				match = pat.search(attributes)
+				match = pat.search(attributes, re.I)
 				if(match):
 					fragment = genome.seq[int(start)-1:int(end)]
 					print
