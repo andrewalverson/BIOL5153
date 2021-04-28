@@ -80,22 +80,31 @@ def parse_gff(genome):
 					exon = get_seq(int(start)-1, int(end), strand, genome)
 
 					if(header in exons_dict):
-						print("already there")
 						exons_dict[header][exon_number] = exon
 					else:
-						exons_dict[header] = defaultdict(list)
+						exons_dict[header] = defaultdict(dict)
 						exons_dict[header][exon_number] = exon
 
 				# just print genes that don't have introns
-				#else:
+				else:
 					# print the FASTA header
-					#print(">" + species + "_" + gene_name)
+					print(">" + species + "_" + gene_name)
 					# extract and print the sequence
-					#print(get_seq(int(start)-1, int(end), strand, genome))
+					print(get_seq(int(start)-1, int(end), strand, genome))
 
 			# skip all other feature types
 			else:
 				continue
+
+
+	# loop over exons dictionary (h = header, j = list of exons)
+	for i, j in exons_dict.items():
+		print('>' + i)
+
+		for k in sorted(j):	
+			print(j[k], end='')
+		print()
+
 
 # the 'main' function
 def main():
